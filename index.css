@@ -1,0 +1,53 @@
+body {
+	background: #8ccdff;
+	margin: 0;
+}
+
+ul.object {
+	list-style-type: none;
+	-webkit-margin-after: 0px;
+	-webkit-margin-before: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-margin-start: 0px;
+	-webkit-padding-end: 0px;
+	-webkit-padding-start: 0px;
+}
+
+ul.object label {
+	background: url(./assets/collapse.png) no-repeat 0 2px/ auto;
+}
+
+li.object {
+	background: url(./assets/expand.png) no-repeat 0 2px/ auto;
+	display: block;
+	-webkit-margin-after: 0px;
+	-webkit-margin-before: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-margin-start: 0px;
+	-webkit-padding-end: 0px;
+	-webkit-padding-start: 20px;
+}
+
+ul.object label {
+	padding-left: 20px;
+}
+
+ul.object ul {
+	background-position-x: 20px;
+	padding-left: 20px;
+}
+
+ul.object li {
+	background: url(./assets/inside.png) no-repeat 0 2px/ auto;
+	display: block;
+	list-style: none;
+	padding-left: 20px;
+}
+
+ul.object li.object label {
+	background: url(./assets/expand.png) no-repeat 0 2px/ auto;
+}
+
+ul.object li.property label {
+	background: url(./assets/line.png) no-repeat 0 2px/ auto;
+}
