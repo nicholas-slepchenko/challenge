@@ -1,6 +1,14 @@
 body {
-	background: #8ccdff;
+	background: #b3dcff;
 	margin: 0;
+}
+
+ul.constructor {
+	background: #ffffff;
+	margin: 50px auto 0 auto;
+	width: 60%;
+	border:3px solid #3555B2;
+	padding: 10px;
 }
 
 ul.object {
@@ -51,4 +59,26 @@ li.object {
 	-webkit-margin-start: 0px;
 	-webkit-padding-end: 0px;
 	-webkit-padding-start: 20px;
+}
+
+ul.object label, li.object label {
+	color: #3555B2;
+}
+
+li.property label {
+	color: #213069;
+}
+
+div.buttons {
+	background: #ffffff;
+	margin: 10px auto;
+	width: 60%;
+	border:3px solid #3555B2;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+div.buttons button {
+	margin: 0 5px;
 }
