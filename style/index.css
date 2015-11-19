@@ -1,0 +1,116 @@
+body {
+	background: #b3dcff;
+	margin: 0;
+	font: 15px arial;
+}
+
+ul#constructor {
+	background: #ffffff;
+	margin: 50px auto 0 auto;
+	width: 60%;
+	min-width: 600px;
+	border:3px solid #3555B2;
+	padding: 10px;
+}
+
+ul#constructor textarea {
+	margin-top: 10px;
+	padding: 5px;
+	width: 100%;
+	min-height: 200px;
+
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+ul.disabled {
+	background: #CCC;
+	opacity: 0.75;
+	pointer-events: none
+
+	user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+ul#constructor img {
+	position: relative;
+	top: 3px;
+}
+
+ul#constructor ul.object {
+	list-style-type: none;
+	-webkit-margin-after: 0px;
+	-webkit-margin-before: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-margin-start: 0px;
+	-webkit-padding-end: 0px;
+	-webkit-padding-start: 0px;
+}
+
+ul#constructor ul.object label {
+	background: url(../assets/collapse.png) no-repeat 0 0 / auto;
+	padding-left: 20px;
+}
+
+ul#constructor ul.object ul {
+	background-position-x: 20px;
+	padding-left: 20px;
+}
+
+ul#constructor ul.object ul.object {
+	background: url(../assets/inside.png) no-repeat 0 2px / auto;
+}
+
+ul#constructor ul.object li {
+	background: url(../assets/inside.png) no-repeat 0 1px / auto;
+	display: block;
+	list-style: none;
+	padding-left: 20px;
+}
+
+ul#constructor ul.object li.object label {
+	background: url(../assets/expand.png) no-repeat 0 0 / auto;
+}
+
+ul#constructor ul.object li.property label {
+	background: url(../assets/line.png) no-repeat 0 0 / auto;
+}
+
+ul#constructor li.object {
+	background: url(../assets/expand.png) no-repeat 0 0 / auto;
+	display: block;
+	-webkit-padding-start: 20px;
+}
+
+ul#constructor ul.object label, li.object label {
+	color: #3555B2;
+}
+
+ul#constructor li.property label {
+	color: #213069;
+}
+
+ul#constructor label {
+	padding-right: 8px;
+}
+
+div.buttons {
+	background: #ffffff;
+	margin: 10px auto;
+	width: 60%;
+	min-width: 600px;
+	border:3px solid #3555B2;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+div.buttons button {
+	margin: 0 5px;
+}
+
