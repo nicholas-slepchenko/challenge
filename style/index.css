@@ -4,10 +4,34 @@ body {
 	font: 15px arial;
 }
 
+ul#constructor.disabled .object{
+	background: #CCC;
+	opacity: 0.75;
+	pointer-events: none
+
+	user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
 ul#constructor {
 	background: #ffffff;
 	margin: 50px auto 0 auto;
 	width: 60%;
+	min-height: 200px;
+	min-width: 600px;
+	border:3px solid #3555B2;
+	padding: 10px;
+}
+
+ul#constructor {
+	background: #ffffff;
+	margin: 50px auto 0 auto;
+	width: 60%;
+	min-height: 200px;
 	min-width: 600px;
 	border:3px solid #3555B2;
 	padding: 10px;
@@ -22,19 +46,6 @@ ul#constructor textarea {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-}
-
-ul.disabled {
-	background: #CCC;
-	opacity: 0.75;
-	pointer-events: none
-
-	user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
 }
 
 ul#constructor img {
@@ -52,8 +63,17 @@ ul#constructor ul.object {
 	-webkit-padding-start: 0px;
 }
 
-ul#constructor ul.object label {
+ul#constructor .collapse label {
 	background: url(../assets/collapse.png) no-repeat 0 0 / auto;
+	padding-left: 20px;
+}
+
+ul#constructor .expand .object, ul#constructor .expand .property {
+	display: none;
+}
+
+ul#constructor .expand label {
+	background: url(../assets/expand.png) no-repeat 0 0 / auto;
 	padding-left: 20px;
 }
 
@@ -73,18 +93,8 @@ ul#constructor ul.object li {
 	padding-left: 20px;
 }
 
-ul#constructor ul.object li.object label {
-	background: url(../assets/expand.png) no-repeat 0 0 / auto;
-}
-
 ul#constructor ul.object li.property label {
 	background: url(../assets/line.png) no-repeat 0 0 / auto;
-}
-
-ul#constructor li.object {
-	background: url(../assets/expand.png) no-repeat 0 0 / auto;
-	display: block;
-	-webkit-padding-start: 20px;
 }
 
 ul#constructor ul.object label, li.object label {

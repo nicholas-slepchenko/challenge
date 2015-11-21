@@ -1,26 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="./style/index.css" media="screen">
 	<title>Object Constructor</title>
 </head>
 <body>
-<ul id="constructor">
-	<hr>
-	<ul class="object disabled"><label>object</label><img src="./assets/add.png"/><img src="./assets/remove.png"/>
-		<li class="property"><label>property</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-		<ul class="object"><label>object</label><img src="./assets/add.png"/><img src="./assets/remove.png"/>
-			<li class="property"><label>property</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-			<ul class="object"><label>object</label><img src="./assets/add.png"/><img src="./assets/remove.png"/>
-				<li class="property"><label>property</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-				<li class="property"><label>property</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-				<li class="object"><label>object</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-			</ul>
-		</ul>
-		<li class="object"><label>object</label><img src="./assets/add.png"/><img src="./assets/remove.png"/></li>
-	</ul>
-</ul>
+<ul id="constructor"></ul>
 <div class="buttons">
 	<button id="new-btn">New</button>
 	<button id="clear-btn">Clear</button>
@@ -37,6 +22,9 @@
 		fromJSONBtn = document.getElementById("from-json-btn"),
 		constructor = new ObjectConstructor(target);
 
+	newBtn.addEventListener("click", constructor.newOne.bind(constructor));
+	clearBtn.addEventListener("click", constructor.clear.bind(constructor));
+	toJSONBtn.addEventListener("click", constructor.toJSON.bind(constructor));
 	fromJSONBtn.addEventListener("click", constructor.fromJSON.bind(constructor));
 </script>
 </body>
