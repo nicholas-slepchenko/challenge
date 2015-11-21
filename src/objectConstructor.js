@@ -16,9 +16,11 @@ function ObjectConstructor (target) {
 			parent = target.parentElement;
 
 		if (target.className.indexOf("add") > -1) {
-			parent.appendChild(self.buildObject({}, "newObject"));
+			parent.appendChild(self.create());
+		} else if (target.className.indexOf("edit") > -1) {
+			self.edit(parent);
 		} else if (target.className.indexOf("remove") > -1) {
-
+			parent.remove();
 		} else if (target.className.indexOf("object")) {
 			if (parent.className.indexOf("expand") > -1) {
 				parent.className = parent.className.replace("expand", "collapse");
@@ -29,9 +31,51 @@ function ObjectConstructor (target) {
 	}, false);
 }
 
+/**
+ * Add new empty object in working area, will remove old object if it's exist
+ */
 ObjectConstructor.prototype.newOne = function () {
 	this.clear(true);
 	this.node.appendChild(this.buildObject({}, "object"));
+};
+
+/**
+ * Create new object or property step by step in 2-3 steps
+ * @returns {HTMLElement} new objector property
+ */
+ObjectConstructor.prototype.create = function () {
+	var response = null,
+		id = prompt("Please type name of object/property...") || "new",
+		type = confirm("Please press ok if you need an object and press cancel to create property.");
+
+	if (type) {
+		response = this.buildObject({}, id);
+	} else {
+		response = this.buildProperty(prompt("Please type value of property."), id);
+	}
+
+	return response;
+};
+
+/**
+ * Edit selected object or property
+ * @param target - selected object oe property
+ * @return {HTMLElement} edited object
+ */
+ObjectConstructor.prototype.edit = function (target) {
+	var result = this.create();
+
+	target.getElementsByTagName("label")[0].textContent = result.getElementsByTagName("label")[0].textContent;
+
+	var content = target.innerHTML;
+
+	if (result.className.indexOf("object") > -1) {
+		result.innerHTML = content;
+	}
+
+	target.outerHTML = result.outerHTML;
+
+	return target;
 };
 
 /**
@@ -59,6 +103,12 @@ ObjectConstructor.prototype.clear = function (fully) {
 	}
 };
 
+/**
+ * Build new object
+ * @param object needed object
+ * @param id name of object (id)
+ * @returns {HTMLElement}
+ */
 ObjectConstructor.prototype.buildObject = function (object, id) {
 	(new Validator(object)).notUndefined().notNull().isObject();
 	(new Validator(id)).notUndefined().notNull().isString();
@@ -66,18 +116,21 @@ ObjectConstructor.prototype.buildObject = function (object, id) {
 	var add = document.createElement("img"),
 		label = document.createElement("label"),
 		remove = document.createElement("img"),
-		response = document.createElement("ul");
+		response = document.createElement("ul"),
+		edit = document.createElement("img");
 
-
-	add.src = "./assets/add.png";
 	add.className = "add";
-	remove.src = "./assets/remove.png";
-	remove.className = "remove";
+	add.src = "./assets/add.png";
+	edit.className = "edit";
+	edit.src = "./assets/edit.png";
 	label.textContent = "\"" + id + "\"";
+	remove.className = "remove";
+	remove.src = "./assets/remove.png";
 	response.className = "object expand";
 
 	response.appendChild(label);
 	response.appendChild(add);
+	response.appendChild(edit);
 	response.appendChild(remove);
 
 	for (var id in object) {
@@ -91,25 +144,44 @@ ObjectConstructor.prototype.buildObject = function (object, id) {
 	return response;
 };
 
+/**
+ * Build new property
+ * @param property needed property
+ * @param id name of property (id)
+ * @returns {HTMLElement}
+ */
 ObjectConstructor.prototype.buildProperty = function (property, id) {
 	(new Validator(property)).notUndefined();
 	(new Validator(id)).notUndefined().notNull().isString();
 
-	var label = document.createElement("label"),
+	var edit = document.createElement("img"),
+		label = document.createElement("label"),
+		remove = document.createElement("img"),
 		response = document.createElement("li");
 
+	edit.className = "edit";
+	edit.src = "./assets/edit.png";
 	label.textContent = "\"" + id + "\": " + property;
-	response.parent.className = "property expand";
+	remove.className = "remove";
+	remove.src = "./assets/remove.png";
+	response.className = "property expand";
 	response.appendChild(label);
+	response.appendChild(edit);
+	response.appendChild(remove);
 
 	return response;
 };
 
-ObjectConstructor.prototype.toJSON = function (data) {
-	alert("Will be soon!");
+ObjectConstructor.prototype.toJSON = function () {
+	for(var element in this.node) {
+		console.log(element);
+	}
 };
 
-ObjectConstructor.prototype.fromJSON = function (data) {
+/**
+ * Will create textarea which will be used for create object
+ */
+ObjectConstructor.prototype.fromJSON = function () {
 	if (this.mode != "fromJSON") {
 		this.mode = "fromJSON";
 
@@ -117,18 +189,23 @@ ObjectConstructor.prototype.fromJSON = function (data) {
 
 		// create JSON input
 		this.textArea = document.createElement("textArea");
-		this.textArea.parent.className = "input";
+		this.textArea.className = "input";
 		this.textArea.placeholder = "Insert or type your object in JSON format.";
 		this.textArea.addEventListener("keyup", this.onInputDataChanged.bind(this));
 		this.node.appendChild(this.textArea);
+
+		this.textArea.focus();
+	} else {
+		this.textArea.remove();
+		this.textArea = null;
+		this.mode = null;
 	}
-
-	this.textArea.focus();
-
-	// TEMP: dummy
-	//this.textArea.value = '{"glossary":{"title":"example glossary","GlossDiv":{"title":"S","GlossList":{"GlossEntry":{"ID":"SGML","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","Abbrev":"ISO 8879:1986","GlossDef":{"para":"A meta-markup language, used to create markup languages such as DocBook.","GlossSeeAlso":["GML","XML"]},"GlossSee":"markup"}}}}}';
 };
 
+/**
+ * Listener for changing data in textarea
+ * @param event
+ */
 ObjectConstructor.prototype.onInputDataChanged = function (event) {
 	var	parsedData = null;
 
