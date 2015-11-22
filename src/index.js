@@ -221,10 +221,16 @@ App.prototype.onInJsonClicked = function() {
 	}
 };
 
+/**
+ * Listener for "save" button
+ */
 App.prototype.onSaveClicked = function () {
 	localStorage.model = JSON.stringify(this.model);
 };
 
+/**
+ * Listener for "load" button
+ */
 App.prototype.onLoadClicked = function () {
 	if (localStorage.constructor) {
 		this.model = JSON.parse(localStorage.model);
