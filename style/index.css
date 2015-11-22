@@ -109,7 +109,7 @@ ul#constructor label {
 	padding-right: 8px;
 }
 
-div.buttons {
+div#constructor_buttons {
 	background: #ffffff;
 	margin: 10px auto;
 	width: 60%;
@@ -120,7 +120,7 @@ div.buttons {
 	justify-content: center;
 }
 
-div.buttons button {
+div#constructor_buttons button {
 	margin: 0 5px;
 }
 

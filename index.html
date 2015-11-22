@@ -5,27 +5,10 @@
 	<title>Object Constructor</title>
 </head>
 <body>
-<ul id="constructor"></ul>
-<div class="buttons">
-	<button id="new-btn">New</button>
-	<button id="clear-btn">Clear</button>
-	<button id="to-json-btn">toJSON</button>
-	<button id="from-json-btn">fromJSON</button>
-</div>
 <script type="text/javascript" src="./src/validator.js"></script>
-<script type="text/javascript" src="./src/objectConstructor.js"></script>
+<script type="text/javascript" src="./src/index.js"></script>
 <script type="text/javascript">
-	var target = document.getElementById("constructor"),
-		newBtn = document.getElementById("new-btn"),
-		clearBtn = document.getElementById("clear-btn"),
-		toJSONBtn = document.getElementById("to-json-btn"),
-		fromJSONBtn = document.getElementById("from-json-btn"),
-		constructor = new ObjectConstructor(target);
-
-	newBtn.addEventListener("click", constructor.newOne.bind(constructor));
-	clearBtn.addEventListener("click", constructor.clear.bind(constructor));
-	toJSONBtn.addEventListener("click", constructor.toJSON.bind(constructor));
-	fromJSONBtn.addEventListener("click", constructor.fromJSON.bind(constructor));
+		app = new App();
 </script>
 </body>
 </html>

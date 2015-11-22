@@ -29,6 +29,9 @@ function ObjectConstructor (target) {
 			}
 		}
 	}, false);
+
+	this.superDuperObject = {"qwe":{"q1":{"q":1}, "we":23}};
+	this.node.appendChild(this.buildObject(this.superDuperObject, "object"));
 }
 
 /**
@@ -128,6 +131,8 @@ ObjectConstructor.prototype.buildObject = function (object, id) {
 	remove.src = "./assets/remove.png";
 	response.className = "object expand";
 
+	response.linkToSrc = object;
+
 	response.appendChild(label);
 	response.appendChild(add);
 	response.appendChild(edit);
@@ -169,10 +174,12 @@ ObjectConstructor.prototype.buildProperty = function (property, id) {
 	response.appendChild(edit);
 	response.appendChild(remove);
 
+	response.linkToSrc = property;
+
 	return response;
 };
 
-ObjectConstructor.prototype.toJSON = function () {
+ObjectConstructor.prototype.inJSON = function () {
 	for(var element in this.node) {
 		console.log(element);
 	}
