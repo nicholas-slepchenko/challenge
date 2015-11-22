@@ -54,8 +54,7 @@ App.prototype.build = function () {
  * @returns {HTMLElement} new objector property
  */
 App.prototype.create = function (parent) {
-	var response = null,
-		id = prompt("Please type name of object/property...") || "new",
+	var id = prompt("Please type name of object/property...") || "new",
 		type = confirm("Please press ok if you need an object and press cancel to create property.");
 
 	if (type) {
@@ -73,8 +72,7 @@ App.prototype.create = function (parent) {
  * @param fully nothing or anything, even events
  */
 App.prototype.clear = function (fully) {
-	var content = this.constructor.getElementsByClassName("object"),
-		input = this.constructor.getElementsByClassName("input");
+	var content = this.constructor.getElementsByClassName("object");
 
 	this.cash.json = null;
 
@@ -135,9 +133,7 @@ App.prototype.buildObject = function (parent, id) {
 	response.appendChild(add);
 	response.appendChild(remove);
 
-	response.link = {};
-	response.link.id = id;
-	response.link.parent = parent;
+	response.link = { "id": id, "parent": parent };
 
 	for (var name in parent[id]) {
 		if (typeof parent[id][name] == "object") {
@@ -171,9 +167,7 @@ App.prototype.buildProperty = function (parent, id) {
 	response.appendChild(label);
 	response.appendChild(remove);
 
-	response.link = {};
-	response.link.id = id;
-	response.link.parent = parent;
+	response.link = { "id": id, "parent": parent };
 
 	return response;
 };
